@@ -8,6 +8,7 @@
 
 #define RB_DUP 1
 #define RB_MIN 1
+#define RB_COUNT 1
 
 #define RED 0
 #define BLACK 1
@@ -37,6 +38,10 @@ typedef struct {
 	#ifdef RB_MIN
 	rbnode *min;
 	#endif
+
+    #ifdef RB_COUNT
+	uint32_t count;
+    #endif
 } rbtree;
 
 #define RB_ROOT(rbt) (&(rbt)->root)

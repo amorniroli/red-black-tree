@@ -259,6 +259,9 @@ rbnode *rb_insert(rbtree *rbt, void *data)
 	 */
 	RB_FIRST(rbt)->color = BLACK;
 	
+	/* Update counter. */
+	rbt->count++;
+
 	return new_node;
 }
 
@@ -415,6 +418,9 @@ void *rb_delete(rbtree *rbt, rbnode *node, int keep)
 		rbt->destroy(data);
 		data = NULL;
 	}
+
+    /* Update counter. */
+    rbt->count--;
 
 	return data;
 }
@@ -580,6 +586,7 @@ void rb_print(rbtree *rbt, void (*print_func)(void *))
 	printf("\n--\n");
 	print(rbt, RB_FIRST(rbt), print_func, 0, "T");
 	printf("\ncheck_black_height = %d\n", rb_check_black_height(rbt));
+    printf("\ncounter = %u\n", rbt->count);
 }
 
 /*
